@@ -1,0 +1,110 @@
+{% extends 'landing_page.html' %}
+{% load static %}
+{% block main %}
+<section style="margin-bottom: 50px;">
+  
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-584LZZQ');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-584LZZQ"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+
+  <div class="container-fluid bg-dark" style="margin-top: 110px;">
+      <div class="div_ani row p-4">
+        <div class="col-lg-4 col-md-4 text-right">
+            <h1 class="heading_light">OUR FEATURES</h1>
+        </div>
+        <div class="col-lg-8 col-md-8">
+          <p>
+            Gain a deeper understanding of your digital marketing campaigns and make informed decisions
+            to drive growth and success. Try it out now and see the difference it can make for your
+            future media spending decisions.
+          </p>
+          <p>
+            <a href="{% url 'demo' %}" class="btn btn-xl btn-light">
+              Book My Demo Now 
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+              </svg>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    
+  <div class="container py-2">
+      <div class="row d-flex align-items-center position-relative justify-content-center px-0 g-5">
+        <div class="col-lg-5 col-md-6"  data-aos="zoom-in-right">
+          <img src="{% static 'images/upload.jpg' %}"  alt="Upload image" class="img-fluid position-relative rounded-5 shadow aos-init aos-animate" data-aos="fade-up">
+        </div>
+        <div class="col-lg-4 col-md-6 col-lg-3" data-aos="zoom-in-left">
+          <img src="{% static 'images/analyze.jpg' %}"  alt="Analyze image" class="img-fluid position-relative rounded-5 shadow aos-init aos-animate" data-aos="fade-up" data-aos-duration="500">
+        </div>
+        <div class="col-lg-3 col-md-6" data-aos="zoom-in-left">
+          <img src="{% static 'images/results.jpg' %}" alt="Results image" class="img-fluid position-relative rounded-5 shadow aos-init aos-animate" data-aos="fade-up" data-aos-duration="3000">
+        </div>
+      </div>
+
+    </div>
+
+  <div class="bg-black ">
+      <div class="container-fluid px-vw-5 py-vh-5">
+        <div class="row d-flex align-items-center">
+          <div class="col-lg-2 col-md-4 text-center text-lg-end" data-aos="zoom-in-right">
+            <span class="h1 text-secondary fw-lighter">01: </span>
+            <span>Upload</span>
+          </div>
+          <div class="col-lg-10 col-md-8 bg-dark rounded-5 py-vh-3 text-center my-5" data-aos="zoom-in-up">
+            Upload your data to the platform and gain insights through analysis.
+          </div>
+        </div>
+        <div class="row d-flex align-items-center">
+          <div class="col-lg-2 col-md-4 text-center text-lg-end" data-aos="zoom-in-right">
+            <span class="h1 text-secondary fw-lighter">02: </span>
+            <span> Analyze</span>
+          </div>
+          <div class="col-lg-10 col-md-8 bg-dark rounded-5 py-vh-3 text-center my-5" data-aos="zoom-in-up">
+            Monitor and evaluate the historic performance of your media through in-depth analytics and meaningful insights.
+          </div>
+        </div>
+        
+        <div class="row d-flex align-items-center">
+          <div class="col-lg-2 col-md-4 text-center text-lg-end" data-aos="zoom-in-right">
+            <span class="h1 text-secondary fw-lighter">03:</span>
+            <span> Future Performance</span>
+          </div>
+          <div class="col-lg-10 col-md-8 bg-dark rounded-5 py-vh-3 text-center my-5" data-aos="zoom-in-up">
+            Accurately predict future performance with customize-able forecasting for 30, 60, or 90 days for the metrics that matter to you.
+          </div>
+        </div>
+
+        <div class="row d-flex align-items-center">
+          <div class="col-lg-2 col-md-4 text-center text-lg-end" data-aos="zoom-in-right">
+            <span class="h1 text-secondary fw-lighter">04:</span>
+            <span> Future Performance</span>
+          </div>
+          <div class="col-lg-10 col-md-8 bg-dark rounded-5 py-vh-3 text-center my-5" data-aos="zoom-in-up">
+            Experiment with different spending scenarios and limitations based on budget across your media channels and predict performance
+          </div>
+        </div>
+
+      </div>
+    </div>
+</section>
+
+<style>
+.heading_light {
+  opacity: 0.9;
+  color: darkgray;
+}
+
+</style>
+{% endblock %}

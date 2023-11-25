@@ -1,0 +1,99 @@
+{% extends 'dashboard/dashboard.html' %}
+
+
+{% block body %}
+{% load static %}
+
+
+<div class="container" style="margin-top:50px">
+    <h4>Welcome to the Budget Allocator: Get the most out of your budget across your media channels</h4>
+
+    <form action="{% url 'budget_allocator' %}" method="POST">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label for="question1" class="form-label">1. What is your budget limit?</label>
+            <input type="number" class="form-control" id="question1" aria-describedby="question1" name="budget_limit">
+            
+        </div>
+        <div class="mb-3">
+            <label for="question2" class="form-label">2. How many channels or campaigns are you running?</label>
+            <!-- <select id="question2" class="form-control" aria-label="question2" name="number_of_channels">
+                <option>Select an option</option>
+                <option>paid search</option>
+                <option>paid search brand</option>
+                <option>paid search non-brand display</option>
+                <option>paid social or TV advertising</option>
+            </select> -->
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Paid search" id="opt1" name="channels">
+                <label class="form-check-label" for="opt1">
+                    Paid search
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Paid search brand" id="opt2" name="channels">
+                <label class="form-check-label" for="opt2">
+                    Paid search brand
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Paid search non-brand display" id="opt3" name="channels">
+                <label class="form-check-label" for="opt3">
+                    Paid search non-brand display
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Paid social or TV advertising" id="opt4" name="channels">
+                <label class="form-check-label" for="opt4">
+                    Paid social or TV advertising
+                </label>
+              </div>
+        </div>
+        <div class="mb-3">
+            <label for="question3" class="form-label">3. What is the minimum budget you want to allocate per channel?</label>
+            <input type="number" class="form-control mb-3" id="question3" aria-describedby="question3" name="min_budget_opt1" placeholder="For paid search if applicable">
+            <input type="number" class="form-control mb-3" id="question3" aria-describedby="question3" name="min_budget_opt2" placeholder="For Paid search brand if applicable">
+            <input type="number" class="form-control mb-3" id="question3" aria-describedby="question3" name="min_budget_opt3" placeholder="For Paid search non-brand display if applicable">
+            <input type="number" class="form-control" id="question3" aria-describedby="question3" name="min_budget_opt4" placeholder="For Paid social or TV advertising if applicable">
+            
+        </div>
+        <div class="mb-3">
+            <label for="question4" class="form-label">4. How many monthly conversions per channel are you currently capturing?</label>
+            <input type="number" class="form-control mb-3" id="question4" aria-describedby="question4" name="number_of_conversions_opt1" placeholder="For paid search if applicable">
+            <input type="number" class="form-control mb-3" id="question4" aria-describedby="question4" name="number_of_conversions_opt2" placeholder="For Paid search brand if applicable">
+            <input type="number" class="form-control mb-3" id="question4" aria-describedby="question4" name="number_of_conversions_opt3" placeholder="For Paid search non-brand display if applicable">
+            <input type="number" class="form-control" id="question4" aria-describedby="question4" name="number_of_conversions_opt4" placeholder="For Paid social or TV advertising if applicable">
+            
+        </div>
+        <div class="mb-3">
+            <label for="question5" class="form-label">5. What is your Return on investment (ROI) per channel?</label>
+            <input type="number" class="form-control mb-2" id="question5" aria-describedby="question5" name="roi_opt1" placeholder="For paid search if applicable">
+            <input type="number" class="form-control mb-2" id="question5" aria-describedby="question5" name="roi_opt2" placeholder="For Paid search brand if applicable">
+            <input type="number" class="form-control mb-2" id="question5" aria-describedby="question5" name="roi_opt3" placeholder="For Paid search non-brand display if applicable">
+            <input type="number" class="form-control mb-2" id="question5" aria-describedby="question5" name="roi_opt4" placeholder="For Paid social or TV advertising if applicable">
+            
+        </div>
+        <div class="mb-3">
+            <label for="question6" class="form-label">6. What is your conversion rate per campaign?</label>
+            <input type="number" class="form-control mb-3" id="question4" aria-describedby="question3" name="conversion_rate_opt1" placeholder="For paid search if applicable">
+            <input type="number" class="form-control mb-3" id="question4" aria-describedby="question3" name="conversion_rate_opt2" placeholder="For Paid search brand if applicable">
+            <input type="number" class="form-control mb-3" id="question4" aria-describedby="question3" name="conversion_rate_opt3" placeholder="For Paid search non-brand display if applicable">
+            <input type="number" class="form-control" id="question4" aria-describedby="question3" name="conversion_rate_opt4" placeholder="For Paid social or TV advertising if applicable">
+            
+        </div>
+        
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+
+
+    </form>
+
+
+</div>
+
+
+
+
+{% endblock %}

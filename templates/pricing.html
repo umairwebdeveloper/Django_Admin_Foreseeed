@@ -1,0 +1,143 @@
+{% extends 'landing_page.html' %}
+
+{% block main %}
+<section style="margin-bottom: 50px;">
+  <div class="container text-dark" style="margin-top: 110px;">
+
+    <header class="text-center mb-5 text-white">
+      <div class="row">
+        <div class="col-lg-7 mx-auto">
+          <h1>Our pricing</h1>
+          <h6>Plans start with a 14 day free trial</h6>
+        </div>
+      </div>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-584LZZQ');</script>
+  <!-- End Google Tag Manager -->
+
+
+    </header>
+    
+    <div class="row justify-content-center text-center align-items-end">
+
+      <div class="col-lg-4 col-md-6 col-sm-12 mb-lg-0">
+        <div class="bg-white p-5 rounded-lg shadow">
+          <h1 class="h6 text-uppercase font-weight-bold mb-4">Lite</h1>
+          <!-- <h2 class="h1 font-weight-bold">$199<span class="text-small font-weight-normal ml-2">/ month</span></h2> -->
+
+          <div class="custom-separator my-4 mx-auto bg-primary"></div>
+
+          <ul class="list-unstyled my-5 text-small text-left">
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i> Custom Users
+            </li>
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i> Data upload
+            </li>
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i> Analyze your media performance
+            </li>
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i> User-friendly interface
+            </li>
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i> Forecasting capability
+            </li>
+          </ul>
+          <a href="{% url 'demo' %}" class="btn btn-primary btn-block p-2 shadow rounded-pill">Subscribe</a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="bg-white p-5 rounded-lg shadow">
+          <h1 class="h6 text-uppercase font-weight-bold mb-4">Basic</h1>
+          <!-- <h2 class="h1 font-weight-bold">$899<span class="text-small font-weight-normal ml-2">/ month</span></h2> -->
+
+          <div class="custom-separator my-4 mx-auto bg-primary"></div>
+
+          <ul class="list-unstyled my-5 text-small text-left font-weight-normal">
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i>Single User
+            </li>
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i> Data upload
+            </li>
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i> Analyze your media performance
+            </li>
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i> User-friendly interface
+            </li>
+            <li class="mb-3">
+              <i class="mr-2 text-primary"></i>
+            </li>
+          </ul>
+          <a href="{% url 'demo' %}" class="btn btn-primary btn-block p-2 shadow rounded-pill">Subscribe</a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 mb-lg-0">
+        <div class="bg-white p-5 rounded-lg shadow">
+          <h1 class="h6 text-uppercase font-weight-bold mb-4">Premium</h1>
+          <!-- <h2 class="h1 font-weight-bold">$199<span class="text-small font-weight-normal ml-2">/ month</span></h2> -->
+
+          <div class="custom-separator my-4 mx-auto bg-primary"></div>
+
+          <ul class="list-unstyled my-5 text-small text-left">
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i> Custom Users
+            </li>
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i> Data upload
+            </li>
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i> Analyze your media performance
+            </li>
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i> User-friendly interface
+            </li>
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i> Forecasting capability
+            </li>
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i> Budget Allocator
+            </li>
+            <li class="mb-3">
+              <i class="fa fa-check mr-2 text-primary"></i> App Integration – Coming soon
+            </li>
+          </ul>
+          <a href="{% url 'demo' %}" class="btn btn-primary btn-block p-2 shadow rounded-pill">Subscribe</a>
+        </div>
+      </div>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-584LZZQ"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .rounded-lg {
+    border-radius: 1rem !important;
+  }
+
+  .text-small {
+    font-size: 0.9rem !important;
+  }
+
+  .custom-separator {
+    width: 5rem;
+    height: 6px;
+    border-radius: 1rem;
+  }
+
+  .text-uppercase {
+    letter-spacing: 0.2em;
+  }
+</style>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'landing_page.html' %}
+
+{% block main %}
+<style>
+    .form-control:focus {
+      border-color: inherit;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+</style>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-584LZZQ');</script>
+  <!-- End Google Tag Manager -->
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-584LZZQ"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+<section style="margin-top: 100px; margin-bottom: 20px;">
+  <div class="row justify-content-center text-center m-5 text-cen bg-dark p-4 demo">
+    <p class="h4"> Book app Demo</p>
+    <!-- <p style="color:whitesmoke; opacity: 0.8;">we will be happy to assist you and provide you a custom demo of the app.</p> -->
+    <form action="" method="post" class="col-lg-5 col-md-6 col-sm-12">
+      {% csrf_token %}
+
+        <input type="text" class="mt-2 form-control" placeholder="First Name" required name="first_name"> 
+        <input type="text" class="mt-2 form-control" placeholder="Last Name" required name="last_name">
+        <input type="email" class="mt-2 form-control" placeholder="Company Email" required name="email">
+        <input type="text" class="mt-2 form-control" placeholder="Phone" required name="phone">
+        <select class="mt-2 form-control" required name="company_size">
+            <option value="1" selected>Select company size</option>
+            <option value="0 - 20">0 - 20 </option>
+            <option value="21 - 50">21 - 50 </option>
+            <option value="51 - 100">51 - 100 </option>
+            <option value="100 +">100 +</option>
+        </select>
+        <input type="text" class="mt-2 form-control" placeholder="company Name" required name="company_name">
+      
+      <div class="col text-center mt-4">
+        <input type="submit" value="Book My Demo" class="btn bg-dark text-white border px-5">
+      </div>
+    </form> 
+  </div>
+</section>
+{% endblock %}

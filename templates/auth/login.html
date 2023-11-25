@@ -1,0 +1,116 @@
+{% extends 'landing_page.html' %} {% block main %}
+<section style="margin-bottom: 50px">
+  <div class="container text-dark" style="margin-top: 150px">
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-584LZZQ");
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-584LZZQ"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="container text-center">
+      <div class="row justify-content-center">
+        <form
+          class="col-lg-5 col-md-6 form py-2 rounded"
+          style="box-shadow: 1px 1px 2px 1px black"
+          action="{% url 'login' %}"
+          method="post"
+        >
+          {% csrf_token %}
+          <h2 class="text-white">Login</h2>
+          <div class="col py-3">
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Email"
+              name="email"
+              required
+            />
+          </div>
+
+          <div class="col py-3">
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Password"
+              name="password"
+              minlength="8"
+              required
+              autocomplete="off"
+              autocapitalize="on"
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="my-3 btn text-white border px-5"
+            id="login-button"
+          >
+            Login
+          </button>
+          <div>
+            {% if msg %}
+            <div class="col bg-light text-dark text-center my-2 rounded py-2">
+              {{ msg }}
+            </div>
+            {% endif %}
+            <a
+              style="text-decoration: none"
+              class="text-white border-bottom"
+              href="{% url 'forget_password' %}"
+              ><i>Forgot Password?</i></a
+            >
+
+            <p class="mt-5 py-5 border-top text-white" style="opacity: 0.9">
+              Do not have any account?
+              <a
+                style="text-decoration: none"
+                class="text-white border-bottom"
+                href="{% url 'register' %}"
+              >
+                Register
+              </a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .form-control:focus {
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: transparent;
+    border: none;
+    border-bottom: solid 1px white;
+    color: white;
+  }
+  .form-control {
+    background-color: transparent;
+    border: none;
+    border-bottom: solid 1px white;
+    color: white;
+  }
+</style>
+{% endblock %}

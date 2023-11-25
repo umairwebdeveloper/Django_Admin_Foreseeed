@@ -1,0 +1,50 @@
+{% extends 'dashboard/dashboard.html' %}
+
+
+{% block body %}
+{% load static %}
+
+
+
+<div class="container" style="margin-top:50px">
+    <h1>Results</h1>
+
+
+    <p>Paid Search: {{results.PaidSearch}}</p>
+    <p>Paid Search Brand: {{results.PaidSearchBrand}}</p>
+    <p>Paid Search On Display Brand: {{results.PaidSearchOnDisplayBrand}}</p>
+    <p>Paid Social Or TV: {{results.PaidSocialOrTV}}</p>
+    <p>Optimal objective value: $ {{results.optimal}}</p>
+
+
+    <div class="col-lg-6 col-md-12" id="plot"></div>
+
+
+
+
+</div>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+    const PaidSearch = {{ results.PaidSearch | safe}};
+    const PaidSearchBrand = {{ results.PaidSearchBrand | safe}};
+    const PaidSearchOnDisplayBrand = {{ results.PaidSearchOnDisplayBrand | safe}};
+    const PaidSocialOrTV = {{ results.PaidSocialOrTV | safe}};
+    var data = [
+        {
+            x: ['Paid Search', 'Paid Search Brand', 'Paid Search On display Brand', 'Paid Social or TV'],
+            y: [PaidSearch, PaidSearchBrand, PaidSearchOnDisplayBrand, PaidSocialOrTV],
+            type: 'bar'
+        }
+    ];
+
+    var layout = {
+        title: 'Budget Allocation',
+        barmode: 'stack'
+    };
+
+    Plotly.newPlot('plot', data, layout);
+
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,495 @@
+{% load static %}
+<!doctype html>
+<html class="h-100" lang="en">
+<head>
+
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-584LZZQ');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="HandheldFriendly" content="true">
+  
+  <link rel="icon" type="image/x-icon" href="{% static 'images/icon.ico' %}">
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+      
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      
+      
+      <title>Foreseeed</title>
+      <link rel="stylesheet" href="{% static 'css/theme.min.css' %}">
+  <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+
+<style>
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local(''),
+       url('fonts/inter-v12-latin-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('fonts/inter-v12-latin-300.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local(''),
+       url('fonts/inter-v12-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('fonts/inter-v12-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local(''),
+       url('fonts/inter-v12-latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('fonts/inter-v12-latin-500.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local(''),
+       url('fonts/inter-v12-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('fonts/inter-v12-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+
+#topnav {
+  display: block;
+}
+
+#sidenav {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  background: #333;
+  height: 100%;
+  width: 250px;
+  z-index: 2;
+}
+
+@media (max-width: 767px) {
+  #topnav {
+    display: none;
+  }
+  
+  #sidenav {
+    display: block;
+  }
+}
+
+#hamburger {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  #hamburger {
+    display: block;
+    cursor: pointer;
+    position: fixed;
+    top: 15px;
+    right: 10%;
+    z-index: 3;
+  }
+}
+
+#sidenav.active {
+  left: 0;
+}
+
+.nav-item :hover  {
+  border-bottom: solid white;
+}
+.nav-item :hover i{
+  border-bottom: none;
+}
+.top_nav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+/*  Loader Page  */
+.loader,
+        .loader:after {
+            border-radius: 50%;
+            width: 10em;
+            height: 10em;
+        }
+        .loader {            
+            margin: 60px auto;
+            font-size: 10px;
+            position: fixed;
+            text-indent: -9999em;
+            border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+            border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+            border-left: 1.1em solid #ffffff;
+            -webkit-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-animation: load8 1.1s infinite linear;
+            animation: load8 1.1s infinite linear;
+        }
+        @-webkit-keyframes load8 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes load8 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+        #loadingDiv {
+            position:fixed;;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background-color:#000;
+        }
+</style>
+</head>
+
+<body class="bg-black text-white" >
+   <div class="container-fluid top_nav bg-dark">
+    <div class="row justify-content-between shadow-lg">
+      <div class="col-lg-3 col-md-3">
+        <a class="navbar-brand p-3 sidenav" href="{% url 'index' %}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-stack" viewBox="0 0 16 16">
+            <path d="m14.12 10.163 1.715.858c.22.11.22.424 0 .534L8.267 15.34a.598.598 0 0 1-.534 0L.165 11.555a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.66zM7.733.063a.598.598 0 0 1 .534 0l7.568 3.784a.3.3 0 0 1 0 .535L8.267 8.165a.598.598 0 0 1-.534 0L.165 4.382a.299.299 0 0 1 0-.535L7.733.063z"/>
+            <path d="m14.12 6.576 1.715.858c.22.11.22.424 0 .534l-7.568 3.784a.598.598 0 0 1-.534 0L.165 7.968a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.659z"/>
+          </svg>
+          <span class="ms-md-1 fw-bolder" style="border-bottom: none;font-size: 22px;">
+            FORESEEED
+        </a>
+      </div>
+      {% comment %} <div class="col-lg-9 col-md-9"  id="topnav">
+        <nav>
+          <ul class="navbar-nav mb-lg-0 list-group list-group-horizontal">
+              <li class="nav-item mx-auto">
+                <a class="nav-link fs-5" href="{% url 'index' %}" aria-label="Homepage">
+                  <i class="fa fa-home"></i>
+                  Home
+                </a>
+              </li>
+              <li class="nav-item mx-auto">
+                <a class="nav-link fs-5" href="{% url 'features' %}" aria-label="A sample content page">
+                  <i class="fa fa-lightbulb"></i>
+                  Features
+                </a>
+              </li>
+              <li class="nav-item mx-auto">
+                <a class="nav-link fs-5" href="{% url 'about_us' %}" aria-label="A sample content page">
+                  <i class="fa fa-info-circle"></i>
+                  About us
+                </a>
+              </li>
+              <li class="nav-item mx-auto">
+                <a class="nav-link fs-5" href="{% url 'pricing' %}" aria-label="A sample content page">
+                  <i class="fa fa-money-check"></i>
+                  Pricing
+                </a>
+              </li>
+              <li class="nav-item mx-auto">
+                <a class="nav-link fs-5" href="{% url 'login' %}" aria-label="A system message page">
+                  <i class="fa fa-sign-in-alt"></i>
+                  Login
+                </a>
+              </li>
+          </ul>
+        </nav>
+      </div> {% endcomment %}
+    </div>
+  
+    <div id="hamburger" style="font-size: 25px;">
+      <i class="fa fa-bars"></i>
+    </div>
+    <nav id="sidenav">
+      <div class="container-fluid">
+
+        <ul class="navbar-nav px-1 mb-lg-0 list-group">
+          <li class="nav-item">
+            <a class="nav-link fs-5" href="{% url 'index' %}" aria-label="Homepage">
+              <i class="fa fa-home"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-5" href="{% url 'features' %}" aria-label="A sample content page">
+              <i class="fa fa-lightbulb"></i>
+              Features
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-5" href="{% url 'about_us' %}" aria-label="A sample content page">
+              <i class="fa fa-info-circle"></i>
+              About us
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-5" href="{% url 'pricing' %}" aria-label="A sample content page">
+              <i class="fa fa-money-check"></i>
+              Pricing
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-5" href="{% url 'login' %}" aria-label="A system message page">
+              <i class="fa fa-sign-in-alt"></i>
+              Login
+            </a>
+          </li>
+      </ul>
+
+      </div>
+    </nav>
+
+   </div>
+  
+  
+    
+{% block main %}
+<main>
+      <div class="position-relative bg-cover bg-center rounded-5" style="background-image: url(/static/images/bg.jpg);height: 100vh;">
+        <div class="w-100 position-relative text-white" data-aos="fade" style="height: 100vh;">
+          <div class="position-absolute w-100 h-100 bg-black opacity-75 top-0 start-0"></div>
+          <div class="container py-vh-4 position-relative mt-5 px-vw-5 text-center">
+          <div class="row d-flex align-items-center justify-content-center py-vh-5">
+            <div class="col-12 col-xl-10">
+              <h1 class="display-huge mt-3 mb-3 lh-1">Our Mission</h1>
+            </div>
+            <div class="col-12 col-xl-8">
+              <p class="lead text-secondary">
+                Powerful data analytics and forecasting platform to help you make the right data-driven decisions and predict future performance.
+              </p>
+            </div>
+            <div class="col-12 text-center">
+              <a href="{% url 'register' %}" class="btn btn-xl btn-light">Join us
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+        </svg>
+        </a>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+  
+        <div class="container-fluid py-5 bg-dark">
+          <div class="row d-flex align-items-center text-center">
+            <span class="h5 text-secondary fw-lighter">What we do</span>
+            <div class="col-12 col-lg-7 text-lg-end" data-aos="fade-right">
+              <h2 class="display-4">Historic data analysis</h2>
+              <p>Use past data to identify trends and patterns that can inform future campaign strategies.
+                Our customized analytics solution provides industry professionals the ability to 
+                quickly gain insights and identify optimization opportunities regardless of industry.
+              </p>
+            </div>
+            <div class="col-12 col-lg-5" data-aos="fade-right">
+              <h3 class="pt-5">Dashboard & Visualizations</h3>
+              <p class="text-secondary">Custom dashboard to track the metrics that matter most.<br>
+                <a href="/features" class="link-fancy link-fancy-light me-2">Tell me more</a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                </svg>
+      </p>
+              <h3 class="border-top border-secondary pt-5 mt-5">Forecasting</h3>
+              <p class="text-secondary">Use our advanced algorithms to predict future performance and identify potential opportunities.<br>
+                <a href="/features" class="link-fancy link-fancy-light me-2">Tell me more</a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+      </svg>
+      </p>
+      <h3 class="border-top border-secondary pt-5 mt-5">Budget Allocator</h3>
+              <p class="text-secondary">Allocate your spend according to the effectiveness of your investments.<br>
+                <a href="/features" class="link-fancy link-fancy-light me-2">Tell me more</a>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+      </svg>
+      </p>
+            </div>
+          </div>
+        
+        </div> 
+
+        <div class="bg-dark position-relative" id="about_us">
+              <div class="container px-vw-5 py-vh-5">
+                <div class="row  justify-content-center">
+
+                  <div class="col-lg-7">
+                    <img class="img-fluid rounded-5 mb-n5 shadow" src="{% static 'images/landing_vis.jpg' %}" 
+                    width="350" height="350" data-aos="zoom-in-right">
+                    <img class="img-fluid rounded-5 ms-5 mb-n5 shadow" src="{% static 'images/landing_vis2.jpg' %}" 
+                    width="250" height="250" data-aos="zoom-in-up">
+                  </div>
+                  <div class="col-lg-5 bg-dark rounded-5 py-5" data-aos="zoom-in-right">
+                    <span class="h5 text-secondary fw-lighter">About us?</span>
+                    <h5 class="">
+                      Welcome to our data analytics and forecasting software, 
+                      the solution that empowers marketers to unleash the power of storytelling 
+                      and predict the future.
+                    </h5>
+                    <a href="{% url 'about_us' %}" class="btn btn-xl btn-light">Read More
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+        </div>
+
+        <div class="bg-black">
+            <div class="container px-vw-5 py-vh-5">
+              <div class="row d-flex align-items-center">
+                <div class="col-12 col-lg-5 text-center text-lg-end" data-aos="zoom-in-right">
+                  <span class="h5 text-secondary fw-lighter">What we charge</span>
+                  <h2 class="display-5">
+                      You get our powerful analytics tools for a simple monthly subscription
+                  </h2>
+                </div>
+                <div class="col-12 col-lg-7 bg-dark rounded-5 py-vh-3 text-center my-5" data-aos="zoom-in-up">
+                  <h2 class="display-huge mb-5">
+                    <!-- <span class="fs-4 me-2 fw-light">$</span><span class="border-bottom border-5">$$</span><span class="fs-6 fw-light">/month</span></h2> -->
+                  <!-- <p class="lead text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> -->
+                  <a href="{% url 'pricing' %}" class="btn btn-xl btn-light">Check Pricing
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+        </div>
+
+</main>
+{% endblock %}
+
+<footer class="bg-dark border-top border-dark">
+<div class="container py-vh-4 text-secondary fw-lighter">
+  <div class="row">
+      
+        <div class="col-lg-4 col-md-4  py-4 text-center text-lg-start">
+              <a class="navbar-brand pe-md-4 fs-4 col-12 col-md-auto text-center" href="{% url 'index' %}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-stack" viewBox="0 0 16 16">
+                <path d="m14.12 10.163 1.715.858c.22.11.22.424 0 .534L8.267 15.34a.598.598 0 0 1-.534 0L.165 11.555a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.66zM7.733.063a.598.598 0 0 1 .534 0l7.568 3.784a.3.3 0 0 1 0 .535L8.267 8.165a.598.598 0 0 1-.534 0L.165 4.382a.299.299 0 0 1 0-.535L7.733.063z"/>
+                <path d="m14.12 6.576 1.715.858c.22.11.22.424 0 .534l-7.568 3.784a.598.598 0 0 1-.534 0L.165 7.968a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.659z"/>
+              </svg>
+              <span>Foreseeed</span>
+            </a>
+
+              <div class="">
+                <small class="px-3 mt-5">&copy copyright 2023</small>
+              </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4 text-center border-end border-dark">
+                  <span class="h6">Services</span>
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a href="{% url 'features' %}" class="link-fancy link-fancy-light">Features</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{% url 'pricing' %}" class="link-fancy link-fancy-light">Pricing</a>
+                    </li>
+
+                  </ul>
+        </div>
+        
+        <div class="col-lg-4 col-md-4  text-center">
+                  <span class="h6">Support</span>
+                  <ul class="nav flex-column">
+
+                    <li class="nav-item">
+                      <a href="{% url 'demo' %}" class="link-fancy link-fancy-light">
+                        Book Demo
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{% url 'about_us' %}" class="link-fancy link-fancy-light">About us</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{% url 'faqs' %}" class="link-fancy link-fancy-light">
+                        FAQs
+                      </a>
+                    </li>
+                  </ul>
+        </div>
+  
+  </div>
+</div>
+</footer>
+
+
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/aos.js' %}"></script>
+<script>
+AOS.init({
+ duration: 800, // values from 0 to 3000, with step 50ms
+});
+
+
+  var hamburger = document.getElementById("hamburger");
+var sidenav = document.getElementById("sidenav");
+
+hamburger.addEventListener("click", function () {
+  sidenav.classList.toggle("active");
+});
+
+</script>
+<script>
+$('body').append('<div class="container-fluid" id="loadingDiv"><div class="row justify-content-center mt-5 py-5"><div class="loader">Loading...</div></div></div>');
+$(window).on('load', function(){
+  setTimeout(removeLoader, 500); 
+});
+function removeLoader(){
+    $( "#loadingDiv" ).fadeOut(500, function() {
+      // fadeOut complete. Remove the loading div
+      $( "#loadingDiv" ).remove(); //makes page more lightweight 
+  });  
+}
+</script>
+</body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-584LZZQ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) --> 
+</html>

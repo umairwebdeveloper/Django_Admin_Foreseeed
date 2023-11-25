@@ -1,0 +1,101 @@
+{% extends 'landing_page.html' %}
+
+{% block main %}
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-584LZZQ');</script>
+  <!-- End Google Tag Manager -->
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-584LZZQ"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+<section style="margin-top: 150px; margin-bottom: 20px;">
+    <div class="container-fluid px-vw-5 position-relative aos-init aos-animate" data-aos="fade">
+        <div class="position-absolute w-100 h-50 bg-black top-0 start-0"></div>
+        <div class="position-relative py-vh-5 bg-cover bg-center rounded-5" style="background-image: url(/static/images/bg_about.jpg)">
+          <div class="container bg-black px-vw-5 py-vh-3 rounded-5 shadow" style="opacity: 0.8;">
+          <div class="row d-flex align-items-center">
+          <div class="col-lg-6 col-md-12 d-flex align-items-center bg-dark shadow rounded-5 p-0 aos-init aos-animate" data-aos="zoom-in-up">
+            <div class="row d-flex justify-content-center">
+              <div class="col-lg-12 col-md-12 col-xl-8 text-center my-5">
+                <p class="lead border-bottom pb-4 border-secondary">"About Us"</p>
+                <p class="text-secondary text-center">
+                  We are providing services of data analytics, forecasting, and
+                  the solution that empowers marketers to unleash the power of storytelling 
+                  and predict the future.
+                </p>
+              </div>
+        </div>
+        </div>
+        
+        <div class="col-lg-6 col-md-12 text-center">
+          <h6 class="display-huge fw-bolder border-bottom border-secondary aos-init"
+           data-aos="zoom-in-left">Our Mission</h6>
+          <p class="h4 fw-lighter text-secondary offset-1">
+            Our mission is to help marketers make data-driven decisions that drive growth and success.
+            We understand the importance of data in today’s digital landscape and the impact it has 
+            on marketing campaigns. That’s why we’ve created software that provides in-depth analytics
+            and accurate forecasting to help you understand your audience and create compelling,
+            data-driven stories.
+          </p>  
+        </div>
+          </div>
+          </div>
+        
+        </div>
+    </div>
+</section>
+<div class="row m-5 bg-dark p-4 demo">
+  <p class="h4"> Book app Demo</p>
+  <!-- <p style="color:whitesmoke; opacity: 0.8;">we will be happy to assist you and provide you a custom demo of the app.</p> -->
+  <form action="" method="post">
+    {% csrf_token %}
+    <div class="row justify-content-center">
+        <div class="col">
+                <input type="text" class=" form-control" placeholder="First Name" required>
+        </div>   
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Last Name" required>
+        </div>
+        <div class="col">
+          <input type="email" class="form-control" placeholder="Company Email" required>
+        </div>
+    </div>
+    
+    <div class="row justify-content-center mt-3">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="company Name" required>
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Phone" required>
+      </div>
+        <div class="col">
+          <select class="col form-control" required>
+            <option value="1" selected>Select company size</option>
+            <option value="2">0 - 20 </option>
+            <option value="2">21 - 50 </option>
+            <option value="2">51 - 100 </option>
+            <option value="2">100 +</option>
+          </select>
+        </div>
+    </div>
+    <div class="col text-center mt-4">
+      <input type="submit" value="Book My Demo" class="btn bg-dark text-white border px-5">
+    </div>
+  </form> 
+</div>
+<style>
+.form-control:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+</style>
+{% endblock %}

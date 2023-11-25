@@ -1,0 +1,385 @@
+{% extends 'dashboard/dashboard.html' %}
+
+{% block body %}
+{% load static %}
+<script src="https://cdn.jsdelivr.net/npm/danfojs@1.1.2/lib/bundle.min.js"></script>
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+    </symbol>
+    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+    </symbol>
+    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path
+            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+    </symbol>
+</svg>
+
+
+
+
+
+
+{% block filternav %}
+{% if not msg %}
+<div class="container text-right">
+    <a href="#" data-toggle="collapse" data-target="#filters">
+        Advance Filters
+    </a>
+</div>
+<div id="filters" class="col bg-dark text-white border col rounded p-1 collapse">
+    <form class="col px-1" method="get" action="{% url 'dashboards' %}">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <label>Brand Type:</label>
+                    <div>
+                        <select class="col form-select rounded" name="brand">
+                            <option value="All">All()</option>
+                            {% for brand in brand_types %}
+                            <option value="{{ brand }}">{{ brand }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <label>Engine:</label>
+                    <div>
+                        <select class="col form-select rounded" name="engine">
+                            <option value="All">All()</option>
+                            {% for engine in engines %}
+                            <option value="{{ engine }}">{{ engine }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <label>Device:</label>
+                    <div>
+                        <select class="col form-select rounded" name="device">
+                            <option value="All">All()</option>
+                            {% for device_name in device_names %}
+                            <option value="{{ device_name }}">{{ device_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <label>Campaign:</label>
+                    <div>
+                        <select class="col form-select rounded" name="campaign">
+                            <option value="All">All()</option>
+                            {% for campaign in campaigns %}
+                            <option value="{{ campaign }}">{{ campaign }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-2">
+                <label>Date:</label>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <label class="px-1">From:</label>
+                    <select class="col form-select rounded" name="date_from">
+                        <option value="All">All()</option>
+                        {% for date in dates %}
+                        <option value="{{ date }}">{{ date }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <label class="px-1">To:</label>
+                    <select class="col-12 form-select rounded" name="date_to">
+                        <option value="All">All()</option>
+                        {% for date in dates %}
+                        <option value="{{ date }}">{{ date }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col text-center mt-2">
+            <input type="submit" class="btn btn-primary px-4" value="Apply Filters">
+        </div>
+    </form>
+</div>
+{% endif %}
+{% endblock %}
+
+<style>
+    .ban {
+        padding: 10px;
+        color: #64748b
+    }
+</style>
+<div class="container" style="margin-top:50px ">
+    <div style="display:flex; flex-direction: row; justify-content: space-between">
+        <div style="text-align: center;" class="ban">
+            <h6>Total Cost</h6>
+            <p class="lead"><b>$ {{total_cost}}</b></p>
+        </div>
+        <div style="text-align: center;" class="ban">
+            <h6>Total Conversions</h6>
+            <p class="lead"><b>{{total_conversions}}</b></p>
+        </div>
+        <div style="text-align: center;" class="ban">
+            <h6>Total Conversion Rate (CVR)</h6>
+            <p class="lead"><b>{{total_cvr}}</b></p>
+        </div>
+        <div style="text-align: center;" class="ban">
+            <h6>Cost per click (CPC)</h6>
+            <p class="lead"><b>$ {{total_cpc}}</b></p>
+        </div>
+        <div style="text-align: center;" class="ban">
+            <h6>Cost per Acquisition” (CPA)</h6>
+            <p class="lead"><b>{{total_cpo}}</b></p>
+        </div>
+
+    </div>
+
+
+</div>
+
+<div class="row p-3 text-dark" style="min-height: 100%; bottom: 0;">
+
+    <div class="col container text-center">
+
+        {% if msg %}
+        <div class="alert alert-danger m-3 d-flex align-items-center" role="alert" id="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="success:">
+                <use xlink:href="#exclamation-triangle-fill" />
+            </svg>
+            <div class="px-3">
+                {{ msg }}
+            </div>
+        </div>
+        {% else %}
+        <div class="container-fluid">
+
+            <div style="font-size: 20px;">
+                {% if query_params %}
+                <span class="badge badge-pill badge-info">Brand: {{ query_params.brand }}</span>
+                <span class="badge badge-pill badge-info">Engine: {{ query_params.engine }}</span>
+                <span class="badge badge-pill badge-info">Device: {{ query_params.device }}</span>
+                <span class="badge badge-pill badge-info">Campaign: {{ query_params.campaign }}</span>
+                <span class="badge badge-pill badge-info">Date From: {{ query_params.date_from }}</span>
+                <span class="badge badge-pill badge-info">Date To: {{ query_params.date_to }}</span>
+                {% endif %}
+            </div>
+
+            <div class="row  border-top">
+                <div class="col-lg-6 col-md-12" id="imps_ploting"></div>
+                <div class="col-lg-6 col-md-12" id="clicks_ploting"></div>
+            </div>
+            <div class="row  border-top">
+                <div class="col-lg-6 col-md-12" id="cpc_ploting"></div>
+                <div class="col-lg-6 col-md-12" id="conversions_ploting"></div>
+            </div>
+            <div class="row border-top">
+                <div class="col-lg-6 col-md-12" id="ctr_ploting"></div>
+                <div class="col-lg-6 col-md-12" id="media_spend_ploting"></div>
+            </div>
+            <div class="row border-top justify-content-center">
+                <div class="col-lg-6 col-md-12" id="media_spend_bar_ploting"></div>
+            </div>
+        </div>
+
+        {% endif %}
+
+
+    </div>
+</div>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+
+
+<script>
+    const date = {{ date | safe}};
+    const imps = {{ imps | safe}};
+    const clicks = {{ clicks | safe}};
+    const cpc = {{ cpc | safe}};
+    const conversions = {{ conversions | safe}};
+    const ctr = {{ ctr | safe }};
+    const engine = {{ engine | safe }};
+    const media_spend = {{ media_spend | safe }};
+
+    //  Imps(Y) & Date(X) bar 
+    var data1 = [{
+        x: date,
+        y: imps,
+        type: "lines",
+        marker: {
+            color: '#23b7e5'
+        }
+    }];
+    var layout1 = {
+        // title:"Imps and Date",
+        // xaxis: {title: "Date"},
+        yaxis: { title: "Imps" },
+        plot_bgcolor: "black",
+        paper_bgcolor: "black",
+        xaxis: {
+            color: "white"
+        },
+        yaxis: {
+            color: "white"
+        }
+
+    };
+
+    Plotly.newPlot("imps_ploting", data1, layout1);
+
+
+    //  Clicks(Y) & Date(X) bar 
+    var data2 = [{
+        x: date,
+        y: clicks,
+        type: "bar",
+        marker: {
+            color: '#23b7e5'
+        }
+    }];
+    var layout2 = {
+        // title:"Clicks and Date",
+        // xaxis: {title: "Date"},
+        yaxis: { title: "Clicks" },
+        //plot_bgcolor:"#64748b",
+        plot_bgcolor: "black",
+        paper_bgcolor: "black",
+        xaxis: {
+            color: "white"
+        },
+        yaxis: {
+            color: "white"
+        }
+    };
+
+    Plotly.newPlot("clicks_ploting", data2, layout2);
+
+    //  Cpc(Y) & Date(X) bar 
+    var data3 = [{
+        x: date,
+        y: cpc,
+        type: "bar",
+        marker: {
+            color: '#23b7e5'
+        }
+    }];
+    var layout3 = {
+        // title:"Clicks and Date",
+        // xaxis: {title: "Date"},
+        yaxis: { title: "Cpc" },
+        plot_bgcolor: "black",
+        paper_bgcolor: "black",
+        xaxis: {
+            color: "white"
+        },
+        yaxis: {
+            color: "white"
+        }
+    };
+
+    Plotly.newPlot("cpc_ploting", data3, layout3);
+
+
+    //  Conversions(Y) & Date(X) bar 
+    var data4 = [{
+        x: date,
+        y: conversions,
+        mode: "lines",
+        marker: {
+            color: '#23b7e5'
+        }
+    }];
+    var layout4 = {
+        // title:"Clicks and Date",
+        // xaxis: {title: "Date"},
+        yaxis: { title: "conversions" },
+
+        plot_bgcolor: "black",
+        paper_bgcolor: "black",
+        xaxis: {
+            color: "white"
+        },
+        yaxis: {
+            color: "white"
+        }
+    };
+
+    Plotly.newPlot("conversions_ploting", data4, layout4);
+
+    //  ctr(Y) & Date(X) bar 
+    var data5 = [{
+        x: date,
+        y: ctr,
+        mode: "lines",
+    }];
+    var layout5 = {
+        // title:"Clicks and Date",
+        // xaxis: {title: "Date"},
+        yaxis: { title: "ctr" },
+        plot_bgcolor: "black",
+        paper_bgcolor: "black",
+        xaxis: {
+            color: "white"
+        },
+        yaxis: {
+            color: "white"
+        }
+    };
+
+    Plotly.newPlot("ctr_ploting", data5, layout5);
+
+    //  Total media_spend(Y) & engine(X)  
+
+    var data6 = [{ labels: engine, values: media_spend, hole: .4, type: "pie" }];
+    var layout6 = {
+        // title: "Engine Donut graph",
+        xaxis: { title: "engine" },
+        yaxis: { title: "media_spend" },
+        plot_bgcolor: "black",
+        paper_bgcolor: "black",
+        xaxis: {
+            color: "white"
+        },
+        yaxis: {
+            color: "white"
+        }
+    };
+
+    Plotly.newPlot("media_spend_ploting", data6, layout6);
+
+    var data7 = [{
+        x: date,
+        y: media_spend,
+        type: "bar",
+    }]; 
+    var layout7 = {
+        // title: "Cost Bar",
+        // xaxis: {title: "Date"},
+        yaxis: { title: "media_spend" },
+        plot_bgcolor: "black",
+        paper_bgcolor: "black",
+        xaxis: {
+            color: "white"
+        },
+        yaxis: {
+            color: "white"
+        }
+    };
+    Plotly.newPlot("media_spend_bar_ploting", data7, layout7);
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,1 @@
+ssh -i "foreseeed-django.pem" ubuntu@ec2-54-198-197-210.compute-1.amazonaws.com
