@@ -13,6 +13,7 @@ from prophet import Prophet
 import tempfile
 from django.core.mail import send_mail
 from django.urls import reverse
+from accounts.models import Profile
 
 
 import numpy as np
@@ -66,41 +67,45 @@ def faqs(request):
 
 
 def login_fn(request):
-    """
-        If user is already login then user will be redirected to the dashboard.
-        If user is not login, user will be redirected to login page.
-    """
-
-    if request.user.is_authenticated and request.method == 'GET':
+    if request.user.is_authenticated:
+        # If the user is already authenticated, redirect to the dashboard
         return redirect('/dashboard')
 
-    elif request.method == 'GET':
-        # print(33)
-        return render(request, 'auth/login.html')
-    if request.method == "POST":
-        email, password = request.POST['email'], request.POST['password']
-        username = User.objects.filter(email=email).first().username
-        user = authenticate(username=username, password=password)
-        print(22,user)
+    if request.method == 'GET':
+        # Render the login form for GET requests
+        return render(request, 'auth/new_login.html')
+
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        # Check if a user with the given email exists
+        user = User.objects.filter(email=email).first()
+
         if user is not None:
-            login(request, user)
-            return redirect('/dashboard')
+            # If the user exists, attempt to authenticate
+            authenticated_user = authenticate(username=user.username, password=password)
+
+            if authenticated_user is not None:
+                # If authentication is successful, log in the user and redirect to dashboard
+                login(request, authenticated_user)
+                return redirect('/dashboard')
+            else:
+                # If authentication fails, display an error message
+                return render(request, 'auth/new_login.html', {'msg': "Incorrect password. Please try again.", 's': "error", "d": "danger"})
         else:
-            return render(request, 'auth/login.html',
-                          {'msg': "Wrong Login Id/Password!"}
-                          )
+            # If the user does not exist, display an error message
+            return render(request, 'auth/new_login.html', {'msg': "User does not exist. Please sign up.", 's': "error", "d": "danger"})
+
+    # Redirect to logout if the request doesn't fall into any of the above cases
     return redirect('logout')
 
 
 def register(request):
-    """
-        If user is already login then user will be redirected to the dashboard.
-        If user is not register, user will be redirected to register page.
-    """
     if request.user.is_authenticated and request.method == 'GET':
         return redirect('dashboard')
     elif request.method == 'GET':
-        return render(request, 'auth/register.html')
+        return render(request, 'auth/new_register.html')
     if request.method == "POST":
         data = request.POST
         email = data.get("email")
@@ -111,9 +116,11 @@ def register(request):
                                             username=email,
                                             email=email,
                                             password=password)
-            return render(request, "auth/login.html", context={"msg": "Registered Successfully! "})
+            profile_obj = Profile.objects.create(user = user )
+            profile_obj.save()
+            return render(request, "auth/new_login.html", context={"msg": "Registered Successfully! ", "s": "success", "d": "success"})
         else:
-            return render(request, "auth/register.html", context={"msg": "Email Already Exists!"})
+            return render(request, "auth/new_register.html", context={"msg": "Email Already Exists!", "s": "error", "d": "danger"})
     return redirect('logout')
 
 
@@ -171,7 +178,7 @@ def dashboards(request):
                 context = get_context_dic(df, context_df)
                 context.update({"query_params": data})
                 
-                return render(request, 'dashboard/dashboards.html', context=context)
+                return render(request, 'dashboard/upload_file.html', context=context)
             except Exception as e:
                 print(e)
                 try:
@@ -180,7 +187,7 @@ def dashboards(request):
                     pass
 
         print("No File Uploaded!")
-        return render(request, 'dashboard/dashboards.html', context={"msg": "No Cvs Uploaded Yet!",
+        return render(request, 'dashboard/upload_file.html', context={"msg": "No Cvs Uploaded Yet!",
                                                                      "csv": False})
 
 
@@ -601,3 +608,25 @@ def budget_allocation(channels,number_of_conversions, conversion_rates, min_budg
 
     return results
 
+
+# def new_login(request):
+#     if request.method == 'POST':
+#         # Retrieving username and password from POST request
+#         email = request.POST.get('email')
+#         password = request.POST.get('password')
+
+#         # Authenticating user
+#         user = authenticate(request, email=email, password=password)
+        
+#         # Checking if the user is authenticated
+#         if user is not None:
+#             login(request, user)
+#             # Redirecting to the home page upon successful login
+#             return redirect('home')
+#         else:
+#             # Rendering login page with an error message for invalid credentials
+#             error_message = 'Invalid credentials. Please try again.'
+#             return render(request, 'auth/new_login.html', {'error': error_message})
+#     else:
+#         # Rendering the login page for GET requests
+#         return render(request, 'auth/new_login.html')

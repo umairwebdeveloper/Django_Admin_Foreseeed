@@ -15,12 +15,13 @@ urlpatterns = [
     path('login/', views.login_fn, name='login'),
     path('register/', views.register, name='register'),
     path('dashboard/', views.dashboard, name='dashboard'),
-    path('dashboards/', views.dashboards, name='dashboards'),
+    path('upload-file/', views.dashboards, name='dashboards'),
     path('forecastings/', views.forecastings, name='forecastings'),
     path('budget_allocator/', views.budgetallocator, name="budget_allocator"),
     path('budget_allocator/results', views.budgetallocatorresults, name="budget_allocator_results"),
     path('faqs/', views.faqs, name='faqs'),
     path('logout/', views.logout_user, name='logout'),
+    # path('new_login/', views.new_login, name='new_login'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

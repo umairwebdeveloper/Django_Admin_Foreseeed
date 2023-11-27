@@ -1,7 +1,8 @@
-{% extends 'dashboard/dashboard.html' %}
+{% extends 'dashboard/base.html' %}
 
-{% block body %}
-{% load static %}
+{% block title %}Forecasting - Foreseeed{% endblock %} 
+{% block content %}
+
 <script src="https://cdn.jsdelivr.net/npm/danfojs@1.1.2/lib/bundle.min.js"></script>
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
@@ -31,7 +32,6 @@
       </div>
     {% else %}
     <div class="col text-center h5">X(date)  and select Y matric to visualize forecasting results. </div>
-        {% block filternav  %}
             <div class="col text-left bg-dark text-white border col rounded p-1">
                     <form class="col px-1 py-4">
                         <div class="container-fluid">
@@ -123,7 +123,6 @@
                     </form>
             </div>
             <div id="myDiv"></div>
-        {% endblock %}
         <div class="container-fluid">
             {% if query_params %}
                 <div class="row" style="margin-top: 20px;">

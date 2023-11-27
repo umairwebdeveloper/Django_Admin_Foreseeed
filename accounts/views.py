@@ -5,6 +5,8 @@ from django.contrib import messages
 from .models import *
 from django.contrib.auth import authenticate,login,logout
 from .helpers import send_forget_password_mail
+from django.utils import timezone
+
 
 def Login(request):
     try:
@@ -89,6 +91,11 @@ def ChangePassword(request , token):
     
     try:
         profile_obj = Profile.objects.filter(forget_password_token = token).first()
+                # Check if the profile with the token exists
+        if profile_obj is None:
+            return render(request, "auth/fail_url.html")
+            
+        
         context = {'user_id' : profile_obj.user.id}
         
         if request.method == 'POST':
@@ -102,22 +109,23 @@ def ChangePassword(request , token):
                 
             
             if  new_password != confirm_password:
-                messages.success(request, 'both should  be equal.')
+                messages.success(request, 'Passwords do not match.')
                 return redirect(f'/accounts/change-password/{token}/')
                          
             
             user_obj = User.objects.get(id = user_id)
             user_obj.set_password(new_password)
             user_obj.save()
-            return redirect('/login/')
+            return render(request, "auth/new_login.html", context={"msg": "Password Changed Successfully!", "s": "success", "d": "success"})
+
             
             
-            
+
         
         
     except Exception as e:
         print(e)
-    return render(request , 'auth/password_reset_confirm.html' , context)
+    return render(request , 'auth/new_password_reset_confirm.html' , context)
 
 
 import uuid
@@ -127,8 +135,8 @@ def ForgetPassword(request):
             email = request.POST.get('email')
             
             if not User.objects.filter(email=email).first():
-                messages.success(request, 'User not found with this email.')
-                return redirect('/accounts/forget-password/')
+                messages.success(request, 'Email not found with this email.')
+                return redirect('forget_password')
             
             user_obj = User.objects.filter(email = email).first()
             token = str(uuid.uuid4())
@@ -138,9 +146,9 @@ def ForgetPassword(request):
             send_forget_password_mail(user_obj.email , token, request)
             # messages.success(request, 'An email is sent.')
             # return redirect('/accounts/forget-password/')
-            return render(request, 'auth/reset_password_done.html')
+            return render(request, 'auth/new_reset_password_done.html')
     
     
     except Exception as e:
         print(e)
-    return render(request , 'auth/password_reset.html')
+    return render(request , 'auth/new_password_reset.html')
