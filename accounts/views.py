@@ -6,6 +6,7 @@ from .models import *
 from django.contrib.auth import authenticate,login,logout
 from .helpers import send_forget_password_mail
 from django.utils import timezone
+from .forms import UserUpdateForm
 
 
 def Login(request):
@@ -152,3 +153,34 @@ def ForgetPassword(request):
     except Exception as e:
         print(e)
     return render(request , 'auth/new_password_reset.html')
+
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+
+@login_required(login_url='/login/')
+def user_update(request):
+    user_form = UserUpdateForm(instance=request.user)
+    password_form = PasswordChangeForm(request.user)
+
+    if request.method == 'POST':
+        if 'user_form_submit' in request.POST:  # User Update Form Submission
+            user_form = UserUpdateForm(request.POST, instance=request.user)
+            if user_form.is_valid():
+                user_form.save()
+                messages.success(request, 'Your account information has been updated!')
+                return redirect('profile')
+
+        if 'password_form_submit' in request.POST:  # Password Change Form Submission
+            password_form = PasswordChangeForm(request.user, request.POST)
+            if password_form.is_valid():
+                user = password_form.save()
+                update_session_auth_hash(request, user)  # Maintain the user's session after password change
+                messages.success(request, 'Your password has been changed!')
+                return redirect('profile')
+
+    context = {
+        'user_form': user_form,
+        'password_form': password_form,
+    }
+    
+    return render(request, 'dashboard/profile.html', context)

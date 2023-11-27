@@ -1,0 +1,188 @@
+{% extends 'dashboard/base.html' %} {% block title %}Profile - Foreseeed{% endblock %} {% block content %}
+<div class="d-flex justify-content-center">
+	<div class="col-lg-6">
+        {% if messages %} {% for message in messages %}
+				<div
+					class="sufee-alert alert with-close alert-success alert-dismissible fade show"
+				>
+					<span class="badge badge-pill badge-success">success</span>
+					{{ message }}
+					<button
+						type="button"
+						class="close"
+						data-dismiss="alert"
+						aria-label="Close"
+					>
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				{% endfor %} {% endif %}
+		<div class="card">
+			<div class="card-header">Profile</div>
+			<div class="card-body card-block">
+				<form method="post">
+					{% csrf_token %}
+
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">Full Name</div>
+							<input
+								type="text"
+								name="{{user_form.first_name.name}}"
+								class="form-control"
+								placeholder="Enter your full name"
+								value="{{user_form.first_name.value}}"
+								required
+							/>
+							<div class="input-group-addon">
+								<i class="fa fa-user"></i>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">Email</div>
+							<input
+								type="email"
+								name="{{user_form.email.name}}"
+								class="form-control"
+								placeholder="Enter your email"
+								value="{{user_form.email.value}}"
+								required
+							/>
+							<div class="input-group-addon">
+								<i class="fa fa-envelope"></i>
+							</div>
+						</div>
+					</div>
+					<div class="form-actions form-group">
+						<button
+							type="submit"
+							name="user_form_submit"
+							class="btn btn-primary btn-sm"
+						>
+							Submit
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="d-flex justify-content-center">
+	<div class="col-lg-6">
+		<div class="card">
+			<div class="card-header">Change Password</div>
+			<div class="card-body card-block">
+				{% for error in password_form.old_password.errors %}
+				<div
+					class="sufee-alert alert with-close alert-danger alert-dismissible fade show"
+				>
+					<span class="badge badge-pill badge-danger">Error</span>
+					{{ error }}
+					<button
+						type="button"
+						class="close"
+						data-dismiss="alert"
+						aria-label="Close"
+					>
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				{% endfor %} {% for error in password_form.new_password1.errors %}
+				<div
+					class="sufee-alert alert with-close alert-danger alert-dismissible fade show"
+				>
+					<span class="badge badge-pill badge-danger">Error</span>
+					{{ error }}
+					<button
+						type="button"
+						class="close"
+						data-dismiss="alert"
+						aria-label="Close"
+					>
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				{% endfor %} {% for error in password_form.new_password2.errors %}
+				<div
+					class="sufee-alert alert with-close alert-danger alert-dismissible fade show"
+				>
+					<span class="badge badge-pill badge-danger">Error</span>
+					{{ error }}
+					<button
+						type="button"
+						class="close"
+						data-dismiss="alert"
+						aria-label="Close"
+					>
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				{% endfor %}
+				<form method="post">
+					{% csrf_token %}
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">Old Password</div>
+							<input
+								type="password"
+								name="{{password_form.old_password.name}}"
+								class="form-control"
+								placeholder="Enter your old password"
+								required
+							/>
+							<div class="input-group-addon">
+								<i class="fa fa-asterisk"></i>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">New Password</div>
+							<input
+								type="password"
+								name="{{password_form.new_password1.name}}"
+								class="form-control"
+								placeholder="Enter your new password"
+								required
+							/>
+							<div class="input-group-addon">
+								<i class="fa fa-asterisk"></i>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">
+								Confirm Password
+							</div>
+							<input
+								type="password"
+								name="{{password_form.new_password2.name}}"
+								class="form-control"
+								placeholder="Enter your confirm password"
+								required
+							/>
+							<div class="input-group-addon">
+								<i class="fa fa-asterisk"></i>
+							</div>
+						</div>
+					</div>
+					<div class="form-actions form-group">
+						<button
+							type="submit"
+							name="password_form_submit"
+							class="btn btn-primary btn-sm"
+						>
+							Submit
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -277,7 +277,7 @@
 											>
 												<div class="info clearfix">
 													<div class="image">
-														<a href="#">
+														<a href="{% url 'profile' %}">
 															<img
 																src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
 																alt="John Doe"
@@ -286,7 +286,7 @@
 													</div>
 													<div class="content">
 														<h5 class="name">
-															<a href="#"
+															<a href="{% url 'profile' %}"
 																>{% if user.first_name %}{{user.first_name}}{% else %}name not found{% endif %}</a
 															>
 														</h5>
@@ -301,7 +301,7 @@
 													<div
 														class="account-dropdown__item"
 													>
-														<a href="#">
+														<a href="{% url 'profile' %}">
 															<i
 																class="zmdi zmdi-account"
 															></i
