@@ -1213,6 +1213,7 @@ section {
         top: 0;
         left: 0;
         height: 170px;
+        display: none;
     }
 }
 
@@ -1657,9 +1658,7 @@ section {
     right: 0;
 }
 
-.header-mobile .header-mobile__bar {
-    padding: 15px 0;
-}
+
 
 .header-mobile .header-mobile-inner {
     display: -webkit-box;

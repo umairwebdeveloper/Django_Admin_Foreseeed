@@ -22,7 +22,8 @@ import pulp as p
 
 
 def index(request):
-    return render(request, 'landing_page.html')
+    # return render(request, 'landing_page.html')
+    return redirect('dashboard')
 
 
 #Old code for page submission needs rewrite
@@ -125,14 +126,14 @@ def register(request):
 
 
 @login_required(login_url='/login')
-def dashboard(request):
+def file_upload(request):
     if request.method == 'GET':
         if request.session.get('data_file_temp_path', False):
             data_file_path = request.session["data_file_temp_path"]
             print("File: ", data_file_path)
         else:
             print("No File Uploaded!")
-        return render(request, 'dashboard/dashboard.html')
+        return render(request, 'dashboard/upload_file.html')
     if request.method == "POST":
         excel_file = request.FILES.get("excel_file")
         if excel_file:
@@ -151,25 +152,26 @@ def dashboard(request):
 
                     # print(temp_path)
                     request.session['data_file_temp_path'] = temp_path
-                    return render(request, 'dashboard/dashboard.html', context={"msg": "Saved Successfully"})
+                    return render(request, 'dashboard/upload_file.html', context={"msg": "Saved Successfully"})
                 else:
-                    return render(request, 'dashboard/dashboard.html',
+                    return render(request, 'dashboard/upload_file.html',
                                   context={"error": "File size should be less then 200MB."})
             else:
-                return render(request, 'dashboard/dashboard.html',
+                return render(request, 'dashboard/upload_file.html',
                               context={"error": "Only text/csv file supported. Please Select text/CSV File"})
         else:
-            return render(request, 'dashboard/dashboard.html',
+            return render(request, 'dashboard/upload_file.html',
                           context={"error": "No File Selected. Please Select Text/CSV File"})
 
 
 @login_required(login_url='login')
-def dashboards(request):
+def dashboard(request):
     if request.method == "GET":
         if request.session.get('data_file_temp_path', False):
             data_file_path = request.session["data_file_temp_path"]
             try:
                 df = pd.read_csv(open(data_file_path)).dropna()
+                print(df.head())
                 context_df = pd.read_csv(open(data_file_path)).dropna()
                 data = request.GET
                 if data:
@@ -178,7 +180,7 @@ def dashboards(request):
                 context = get_context_dic(df, context_df)
                 context.update({"query_params": data})
                 
-                return render(request, 'dashboard/upload_file.html', context=context)
+                return render(request, 'dashboard/dashboard.html', context=context)
             except Exception as e:
                 print(e)
                 try:
@@ -187,7 +189,7 @@ def dashboards(request):
                     pass
 
         print("No File Uploaded!")
-        return render(request, 'dashboard/upload_file.html', context={"msg": "No Cvs Uploaded Yet!",
+        return render(request, 'dashboard/dashboard.html', context={"msg": "No File Uploaded Yet!",
                                                                      "csv": False})
 
 

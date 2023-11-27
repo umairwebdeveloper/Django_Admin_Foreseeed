@@ -7,7 +7,8 @@ from django.contrib.auth import authenticate,login,logout
 from .helpers import send_forget_password_mail
 from django.utils import timezone
 from .forms import UserUpdateForm
-
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 
 def Login(request):
     try:
@@ -154,8 +155,7 @@ def ForgetPassword(request):
         print(e)
     return render(request , 'auth/new_password_reset.html')
 
-from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth import update_session_auth_hash
+
 
 @login_required(login_url='/login/')
 def user_update(request):
